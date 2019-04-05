@@ -17,6 +17,7 @@
 #  updated_at             :datetime         not null
 #  uuid                   :string
 #  slug                   :string
+#  role                   :string           default("Non-Admin")
 #
 # Indexes
 #
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    authorize User
     @users = User.paginate(:page => params[:page], :per_page => params[:per_page] ||= 30).order(created_at: :desc)
     respond_to do |format|
       format.json {render json: User.all}
@@ -41,6 +43,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    authorize @user
     respond_to do |format|
       format.json {render json: @user}
       format.html {@user}

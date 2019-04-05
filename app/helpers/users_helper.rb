@@ -17,6 +17,7 @@
 #  updated_at             :datetime         not null
 #  uuid                   :string
 #  slug                   :string
+#  role                   :string           default("Non-Admin")
 #
 # Indexes
 #
